@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="movie_poster">movie poster</string>
+    <string name="no_internet_connection">Sorry no connection internet found, try again</string>
+    <string name="top_popular">Top Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="release">Release:</string>
+    <string name="vote">Vote:</string>
+</resources>
