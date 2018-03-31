@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis posuere nibh. Pellentesque a magna pulvinar, porta arcu ut, accumsan ex. Quisque sit amet auctor turpis. Duis commodo iaculis felis, vitae consectetur nibh consequat in. Nulla elementum purus sollicitudin dolor luctus, et commodo dolor egestas. Curabitur luctus turpis ut augue sollicitudin aliquet vel eget nisl. Donec sit amet volutpat magna." />
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="4dp"
+        android:textAlignment="viewEnd"
+        tools:text="Author" />
+
+</LinearLayout>
