@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,7 +18,8 @@
             android:layout_height="64dp"
             android:background="@color/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/colorAccent" />
+            app:titleTextColor="@color/cardview_light_background"
+            app:title="DETAIL"/>
 
         <ImageView
             android:id="@+id/iv_mini_poster"
@@ -70,6 +72,15 @@
             tools:text="9999-99-99"/>
 
         <TextView
+            android:id="@+id/label_vote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vote"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_vote"
+            app:layout_constraintEnd_toStartOf="@+id/tv_vote"
+            android:layout_marginRight="8dp" />
+
+        <TextView
             android:id="@+id/tv_vote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,13 +101,61 @@
             android:gravity="start" />
 
         <TextView
-            android:id="@+id/label_vote"
-            android:layout_width="wrap_content"
+            android:id="@+id/label_videos"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/vote"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_vote"
-            app:layout_constraintEnd_toStartOf="@+id/tv_vote"
-            android:layout_marginRight="8dp" />
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/videos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_synapsis" />
+
+
+        <com.itarusoft.movies.ListViewNoScroll
+            android:id="@+id/lv_videos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_videos"/>
+
+        <TextView
+            android:id="@+id/label_reviews"
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/reviews"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lv_videos" />
+
+        <com.itarusoft.movies.ListViewNoScroll
+            android:id="@+id/lv_reviews"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/label_reviews" />
+
+        <Button
+            android:id="@+id/bt_favorite"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/mark_as_favorite"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_mini_poster"
+            app:layout_constraintTop_toBottomOf="@+id/label_release" />
+
 
     </android.support.constraint.ConstraintLayout>
 

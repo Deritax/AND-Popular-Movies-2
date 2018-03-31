@@ -3,6 +3,10 @@ package com.itarusoft.movies;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.itarusoft.movies.Objects.Movie;
+import com.itarusoft.movies.Objects.Review;
+import com.itarusoft.movies.Objects.Video;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,8 +31,114 @@ public class QueryUtils {
     private static final String KEY_POSTER = "poster_path";
     private static final String KEY_OVERVIEW = "overview";
     private static final String KEY_VOTE = "vote_average";
+    private static final String KEY_ID = "id";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_KEY = "key";
+    private static final String KEY_SITE = "site";
+    private static final String KEY_TYPE = "type";
+    private static final String KEY_AUTHOR = "author";
+    private static final String KEY_CONTENT = "content";
+
 
     private QueryUtils(){
+    }
+
+    public static List<Review> fetchReviewData(String requestUrl){
+
+        URL url = createUrl(requestUrl);
+
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(url);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+        }
+
+
+        return extractReviewFromJson(jsonResponse);
+    }
+
+    private static List<Review> extractReviewFromJson(String reviewJSON) {
+
+        if (TextUtils.isEmpty(reviewJSON)) {
+            return null;
+        }
+
+        List<Review> reviews = new ArrayList<>();
+
+        try {
+            JSONObject baseJsonResponse = new JSONObject(reviewJSON);
+
+            JSONArray reviewArray = baseJsonResponse.getJSONArray(KEY_RESULTS);
+
+            for (int i = 0; i < reviewArray.length(); i++) {
+
+                JSONObject currentReview = reviewArray.getJSONObject(i);
+
+                String reviewAuthor = currentReview.getString(KEY_AUTHOR);
+
+                String reviewContent = currentReview.getString(KEY_CONTENT);
+
+                Review review = new Review(reviewAuthor,reviewContent);
+
+                reviews.add(review);
+            }
+
+        } catch (JSONException e) {
+            Log.e("QueryUtils", "Problem parsing the review JSON results", e);
+        }
+        return reviews;
+    }
+
+    public static List<Video> fetchVideoData(String requestUrl){
+
+        URL url = createUrl(requestUrl);
+
+        String jsonResponse = null;
+        try {
+            jsonResponse = makeHttpRequest(url);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+        }
+
+
+        return extractVideoFromJson(jsonResponse);
+    }
+
+    private static List<Video> extractVideoFromJson(String videoJSON) {
+
+        if (TextUtils.isEmpty(videoJSON)) {
+            return null;
+        }
+
+        List<Video> videos = new ArrayList<>();
+
+        try {
+            JSONObject baseJsonResponse = new JSONObject(videoJSON);
+
+            JSONArray videoArray = baseJsonResponse.getJSONArray(KEY_RESULTS);
+
+            for (int i = 0; i < videoArray.length(); i++) {
+
+                JSONObject currentVideo = videoArray.getJSONObject(i);
+
+                String videoName = currentVideo.getString(KEY_NAME);
+
+                String videoKey = currentVideo.getString(KEY_KEY);
+
+                String videoSite = currentVideo.getString(KEY_SITE);
+
+                String videoType = currentVideo.getString(KEY_TYPE);
+
+                Video video = new Video(videoName, videoKey, videoSite, videoType);
+
+                videos.add(video);
+            }
+
+        } catch (JSONException e) {
+            Log.e("QueryUtils", "Problem parsing the video JSON results", e);
+        }
+        return videos;
     }
 
     public static List<Movie> fetchMovieData(String requestUrl){
@@ -43,10 +153,10 @@ public class QueryUtils {
         }
 
 
-        return extractFeatureFromJson(jsonResponse);
+        return extractMovieFromJson(jsonResponse);
     }
 
-    private static List<Movie> extractFeatureFromJson(String movieJSON) {
+    private static List<Movie> extractMovieFromJson(String movieJSON) {
 
         if (TextUtils.isEmpty(movieJSON)) {
             return null;
@@ -73,7 +183,9 @@ public class QueryUtils {
 
                 String movieOverview = currentMovie.getString(KEY_OVERVIEW);
 
-                Movie movie = new Movie(movieTitle, movieRelease, moviePoster, movieVote, movieOverview);
+                String movieId = currentMovie.getString(KEY_ID);
+
+                Movie movie = new Movie(movieTitle, movieRelease, moviePoster, movieVote, movieOverview, movieId);
 
                 movies.add(movie);
             }

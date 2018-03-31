@@ -6,4 +6,10 @@
     <string name="top_rated">Top Rated</string>
     <string name="release">Release:</string>
     <string name="vote">Vote:</string>
+    <string name="videos">Videos:</string>
+    <string name="reviews">Reviews:</string>
+    <string name="mark_as_favorite">MARK AS FAVORITE</string>
+    <string name="editor_insert_movie_failed">Error: insert movie failed</string>
+    <string name="editor_insert_movie_successful">Movie add to favorites</string>
+    <string name="favorite">Favorite</string>
 </resources>

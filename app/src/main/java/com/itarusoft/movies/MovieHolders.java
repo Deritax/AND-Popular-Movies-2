@@ -15,6 +15,7 @@ public class MovieHolders extends RecyclerView.ViewHolder implements View.OnClic
     public String moviePoster;
     public String movieVote;
     public String movieSynopsis;
+    public String movieId;
 
     public MovieHolders(View itemView) {
         super(itemView);
@@ -35,6 +36,7 @@ public class MovieHolders extends RecyclerView.ViewHolder implements View.OnClic
         intent.putExtra("MOVIE_POSTER",moviePoster);
         intent.putExtra("MOVIE_VOTE",movieVote);
         intent.putExtra("MOVIE_SYNOPSIS",movieSynopsis);
+        intent.putExtra("MOVIE_ID",movieId);
         context.startActivity(intent);
     }
 }
