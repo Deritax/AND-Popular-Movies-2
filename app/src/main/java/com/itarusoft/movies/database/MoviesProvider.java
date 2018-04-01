@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Database;
+package com.itarusoft.movies.database;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
-import com.itarusoft.movies.Database.MovieContract.MovieEntry;
+import com.itarusoft.movies.database.MovieContract.MovieEntry;
 
 public class MoviesProvider extends ContentProvider {
 

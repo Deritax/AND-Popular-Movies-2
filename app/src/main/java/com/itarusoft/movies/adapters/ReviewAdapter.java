@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Adapters;
+package com.itarusoft.movies.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.itarusoft.movies.Objects.Review;
+import com.itarusoft.movies.objects.Review;
 import com.itarusoft.movies.R;
 
 import java.util.List;

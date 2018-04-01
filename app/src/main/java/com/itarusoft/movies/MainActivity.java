@@ -17,12 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.itarusoft.movies.Adapters.FavoriteAdapter;
-import com.itarusoft.movies.Adapters.MovieAdapter;
-import com.itarusoft.movies.Database.MovieContract.MovieEntry;
-import com.itarusoft.movies.Loaders.MovieLoader;
-import com.itarusoft.movies.Objects.Movie;
+import com.itarusoft.movies.adapters.FavoriteAdapter;
+import com.itarusoft.movies.adapters.MovieAdapter;
+import com.itarusoft.movies.database.MovieContract.MovieEntry;
+import com.itarusoft.movies.loaders.MovieLoader;
+import com.itarusoft.movies.objects.Movie;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final int LOADER_FAVORITE = 2;
 
-    private int order;
+    private int order = 3;
 
     private Context context;
 
@@ -60,7 +61,21 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         context = this;
 
-        order = 0;
+        if (order == 3)
+        {
+            ConnectivityManager connMgr = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+            if (networkInfo != null && networkInfo.isConnected()){
+                order = 0;
+            }
+            else
+            {
+                order = 2;
+            }
+        }
 
         ButterKnife.bind(this);
 
@@ -72,6 +87,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         setSupportActionBar(topToolBar);
 
+        GridLayoutManager movieLayout = new GridLayoutManager(MainActivity.this, spanCount);
+
+        rvMovies.setHasFixedSize(true);
+        rvMovies.setLayoutManager(movieLayout);
 
         if (savedInstanceState != null) {
             order = savedInstanceState.getInt(KEY_ORDER_STATE);
@@ -79,30 +98,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             Parcelable listState = savedInstanceState.getParcelable(KEY_RECYCLER_STATE);
 
             rvMovies.getLayoutManager().onRestoreInstanceState(listState);
+        }
 
-        } else{
+        if (order != 2) {
 
+            LoaderManager loaderManager = getLoaderManager();
 
-            GridLayoutManager movieLayout = new GridLayoutManager(MainActivity.this, spanCount);
+            loaderManager.initLoader(LOADER_ID, null, this);
+        } else {
 
-            rvMovies.setHasFixedSize(true);
-            rvMovies.setLayoutManager(movieLayout);
+            LoaderManager loaderManager = getLoaderManager();
 
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-            if (networkInfo != null && networkInfo.isConnected() && order != 2) {
-
-                LoaderManager loaderManager = getLoaderManager();
-
-                loaderManager.initLoader(LOADER_ID, null, this);
-            } else {
-
-                LoaderManager loaderManager = getLoaderManager();
-                loaderManager.initLoader(LOADER_FAVORITE, null, favoriteLoader);
-            }
+            loaderManager.initLoader(LOADER_FAVORITE, null, favoriteLoader);
         }
     }
 
@@ -114,12 +121,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
 
-        if(id == R.id.action_popular){
+        boolean check;
+
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            check = true;
+        } else {
+            check = false;
+            Toast.makeText(context, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+        }
+
+        if(id == R.id.action_popular && check == true) {
             order = 0;
         }
-        if(id == R.id.action_rated){
+        if(id == R.id.action_rated && check == true){
             order = 1;
         }
         if(id == R.id.action_favorite){
@@ -127,18 +149,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
         if(order < 2) {
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) {
-                getLoaderManager().restartLoader(LOADER_ID, null, MainActivity.this);
+            getLoaderManager().restartLoader(LOADER_ID, null, MainActivity.this);
 
-            } else {
-                emptyView.setText(R.string.no_internet_connection);
-            }
-        }
-        else {
+        } else {
             getLoaderManager().initLoader(LOADER_FAVORITE, null, favoriteLoader);
         }
 

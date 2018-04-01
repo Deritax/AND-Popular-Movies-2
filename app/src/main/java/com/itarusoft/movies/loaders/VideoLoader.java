@@ -1,18 +1,18 @@
-package com.itarusoft.movies.Loaders;
+package com.itarusoft.movies.loaders;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.itarusoft.movies.Objects.Movie;
+import com.itarusoft.movies.objects.Video;
 import com.itarusoft.movies.QueryUtils;
 
 import java.util.List;
 
-public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
+public class VideoLoader extends AsyncTaskLoader<List<Video>> {
 
     private String url;
 
-    public MovieLoader(Context context, String url) {
+    public VideoLoader(Context context, String url) {
         super(context);
         this.url = url;
     }
@@ -23,12 +23,12 @@ public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
     }
 
     @Override
-    public List<Movie> loadInBackground() {
+    public List<Video> loadInBackground() {
         if(this.url == null)
         {
             return null;
         }
 
-        return QueryUtils.fetchMovieData(this.url);
+        return QueryUtils.fetchVideoData(this.url);
     }
 }

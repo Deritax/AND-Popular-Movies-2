@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Objects;
+package com.itarusoft.movies.objects;
 
 public class Movie {
 

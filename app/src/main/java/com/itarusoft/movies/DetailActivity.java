@@ -18,13 +18,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.itarusoft.movies.Adapters.ReviewAdapter;
-import com.itarusoft.movies.Adapters.VideoAdapter;
-import com.itarusoft.movies.Database.MovieContract.MovieEntry;
-import com.itarusoft.movies.Loaders.ReviewLoader;
-import com.itarusoft.movies.Loaders.VideoLoader;
-import com.itarusoft.movies.Objects.Review;
-import com.itarusoft.movies.Objects.Video;
+import com.itarusoft.movies.adapters.ReviewAdapter;
+import com.itarusoft.movies.adapters.VideoAdapter;
+import com.itarusoft.movies.database.MovieContract.MovieEntry;
+import com.itarusoft.movies.loaders.ReviewLoader;
+import com.itarusoft.movies.loaders.VideoLoader;
+import com.itarusoft.movies.objects.Review;
+import com.itarusoft.movies.objects.Video;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

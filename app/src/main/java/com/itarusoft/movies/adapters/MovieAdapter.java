@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Adapters;
+package com.itarusoft.movies.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.itarusoft.movies.MovieHolders;
-import com.itarusoft.movies.Objects.Movie;
+import com.itarusoft.movies.objects.Movie;
 import com.itarusoft.movies.R;
 import com.squareup.picasso.Picasso;
 

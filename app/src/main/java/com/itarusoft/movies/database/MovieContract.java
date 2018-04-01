@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Database;
+package com.itarusoft.movies.database;
 
 import android.content.ContentResolver;
 import android.net.Uri;

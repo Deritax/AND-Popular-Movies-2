@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Adapters;
+package com.itarusoft.movies.adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.itarusoft.movies.Database.MovieContract.MovieEntry;
+import com.itarusoft.movies.database.MovieContract.MovieEntry;
 import com.itarusoft.movies.MovieHolders;
 import com.itarusoft.movies.R;
 import com.squareup.picasso.Picasso;

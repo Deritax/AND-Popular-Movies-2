@@ -1,9 +1,9 @@
-package com.itarusoft.movies.Loaders;
+package com.itarusoft.movies.loaders;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 
-import com.itarusoft.movies.Objects.Review;
+import com.itarusoft.movies.objects.Review;
 import com.itarusoft.movies.QueryUtils;
 
 import java.util.List;

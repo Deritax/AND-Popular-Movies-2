@@ -1,10 +1,10 @@
-package com.itarusoft.movies.Database;
+package com.itarusoft.movies.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.itarusoft.movies.Database.MovieContract.MovieEntry;
+import com.itarusoft.movies.database.MovieContract.MovieEntry;
 
 public class MoviesDbHelper extends SQLiteOpenHelper{
 

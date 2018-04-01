@@ -3,9 +3,9 @@ package com.itarusoft.movies;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.itarusoft.movies.Objects.Movie;
-import com.itarusoft.movies.Objects.Review;
-import com.itarusoft.movies.Objects.Video;
+import com.itarusoft.movies.objects.Movie;
+import com.itarusoft.movies.objects.Review;
+import com.itarusoft.movies.objects.Video;
 
 import org.json.JSONArray;
 import org.json.JSONException;

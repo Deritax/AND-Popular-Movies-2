@@ -1,4 +1,4 @@
-package com.itarusoft.movies.Adapters;
+package com.itarusoft.movies.adapters;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.itarusoft.movies.Objects.Video;
+import com.itarusoft.movies.objects.Video;
 import com.itarusoft.movies.R;
 
 import android.widget.ArrayAdapter;

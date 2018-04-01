@@ -28,7 +28,7 @@
                 android:value=".MainActivity" />
         </activity>
         <provider
-            android:name=".Database.MoviesProvider"
+            android:name=".database.MoviesProvider"
             android:authorities="com.itarusoft.movies"
             android:exported="false" />
     </application>
